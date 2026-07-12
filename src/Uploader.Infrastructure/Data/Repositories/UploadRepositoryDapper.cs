@@ -4,7 +4,6 @@ using Uploader.Core.Entities;
 
 namespace Uploader.Infrastructure.Data.Repositories;
 
-[DapperAot]
 public class UploadRepositoryDapper(DapperContext context) : IUploadRepository
 {
     public async Task AddAsync(Upload upload, CancellationToken ct = default)

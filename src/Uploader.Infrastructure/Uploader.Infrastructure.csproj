@@ -7,7 +7,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper" />
-    <PackageReference Include="Dapper.AOT" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="Microsoft.Extensions.Configuration" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />

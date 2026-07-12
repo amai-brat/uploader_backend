@@ -19,7 +19,7 @@ public static class Entry
         });
 
         services.AddOptionsWithValidateOnStart<AppSettings, AppSettingsValidateOptions>()
-            .Bind(configuration.GetRequiredSection(AppSettings.SectionName));
+            .BindConfiguration(AppSettings.SectionName);
         
         return services;
     }

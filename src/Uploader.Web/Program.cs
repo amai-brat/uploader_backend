@@ -34,17 +34,12 @@ builder.Logging.AddJsonConsole(options =>
 
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddOpenApi();
 builder.Services.AddFeature(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 app.UseHttpLogging();
 app.UseExceptionHandler();
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
 app.MapGroup("api").MapEndpoints();
 app.Run();

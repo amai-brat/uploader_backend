@@ -1,11 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <PublishAot>true</PublishAot>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uploader.Feature\Uploader.Feature.csproj" />
     <ProjectReference Include="..\Uploader.Infrastructure\Uploader.Infrastructure.csproj" />
