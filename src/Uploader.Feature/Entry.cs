@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Uploader.Core.Options;
+using Uploader.Feature.Api.GetObject;
 using Uploader.Feature.Api.Upload;
 
 namespace Uploader.Feature;
@@ -12,6 +13,7 @@ public static class Entry
         services.ConfigureHttpJsonOptions(static options =>
         {
             options.SerializerOptions.TypeInfoResolverChain.Add(UploadJsonSerializerContext.Default);
+            options.SerializerOptions.TypeInfoResolverChain.Add(GetObjectJsonSerializerContext.Default);
         });
 
         services.AddOptionsWithValidateOnStart<AppSettings, AppSettingsValidateOptions>()

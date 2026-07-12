@@ -14,7 +14,7 @@ using Uploader.Feature.Abstractions;
 
 namespace Uploader.Feature.Api.Upload;
 
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class UploadEndpoint : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app)
