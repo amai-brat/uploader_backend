@@ -1,0 +1,16 @@
+services:
+  uploader-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: uploader-api
+    ports:
+      - "5000:5000"
+    environment:
+      ENV_App__StoragePath: /tmp/uploader
+      ENV_App__BaseUrl: http://localhost:5000/
+      ENV_ConnectionStrings__Sqlite: Data Source=uploader.db
+    volumes:
+      - /tmp/uploader:/tmp/uploader
+      - /tmp/uploader/uploader.db:/app/uploader.db
+      

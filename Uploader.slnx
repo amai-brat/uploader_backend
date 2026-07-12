@@ -1,7 +1,10 @@
 <Solution>
   <Folder Name="/solution_items/">
+    <File Path=".dockerignore" />
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="compose.yaml" />
+    <File Path="Dockerfile" />
     <File Path="init.sql" />
   </Folder>
   <Folder Name="/src/">
