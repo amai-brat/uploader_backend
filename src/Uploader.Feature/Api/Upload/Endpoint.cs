@@ -33,6 +33,7 @@ public class UploadEndpoint : IEndpoint
         ILogger<UploadEndpoint> logger,
         IUploadRepository uploadRepository,
         IOptions<AppSettings> options,
+        IThumbnailJobQueue thumbnailQueue,
         HttpContext httpContext,
         CancellationToken ct)
     {
@@ -83,6 +84,13 @@ public class UploadEndpoint : IEndpoint
 
         await uploadRepository.AddAsync(upload, ct);
         await uploadRepository.SaveChangesAsync(ct);
+        
+        var isMedia = contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) || 
+                      contentType.StartsWith("video/", StringComparison.OrdinalIgnoreCase);
+        if (isMedia)
+        {
+            await thumbnailQueue.EnqueueAsync(new ThumbnailJob(fileNameOnStorage, contentType), ct);
+        }
         
         var baseUrl = appSettings.BaseUrl.TrimEnd('/');
         var link = $"{baseUrl}/{fileNameOnStorage}";

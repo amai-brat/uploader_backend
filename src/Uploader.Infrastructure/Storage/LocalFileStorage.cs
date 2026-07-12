@@ -44,6 +44,33 @@ public class LocalFileStorage : IFileStorage
         }
     }
 
+    public async Task<Result> UploadThumbnailAsync(Stream stream, string fileName, CancellationToken ct = default)
+    {
+        try
+        {
+            if (!Directory.Exists(_appSettings.ThumbnailsPath))
+            {
+                Directory.CreateDirectory(_appSettings.ThumbnailsPath);
+            }
+
+            var filePath = Path.Combine(_appSettings.ThumbnailsPath, fileName);
+
+            await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true);
+            if (stream.CanSeek)
+            {
+                stream.Position = 0;
+            }
+            
+            await stream.CopyToAsync(fs, ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to write file {FileName} to disk.", fileName);
+            return Result.Failure("Internal storage error occurred while saving the file.");
+        }
+    }
+
     public Task<Result> DeleteAsync(string fileName, CancellationToken ct = default)
     {
         try
