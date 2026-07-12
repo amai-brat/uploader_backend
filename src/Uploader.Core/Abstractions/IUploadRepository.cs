@@ -6,5 +6,7 @@ public interface IUploadRepository
 {
     Task AddAsync(Upload upload, CancellationToken ct = default);
     
+    Task<Upload?> FindByFileIdAsync(string fileId, CancellationToken ct = default);
+    
     Task SaveChangesAsync(CancellationToken ct = default);
 }

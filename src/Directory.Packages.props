@@ -7,14 +7,16 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Microsoft -->
+    <PackageVersion Include="Dapper" Version="2.1.79" />
+    <PackageVersion Include="Dapper.AOT" Version="1.0.52" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="$(MicrosoftPackageVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tasks" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="$(MicrosoftPackageVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftPackageVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Options" Version="$(MicrosoftPackageVersion)" />
+    <!-- System -->
+    <PackageVersion Include="System.Data.SQLite.Core" Version="1.0.119" />
     <!-- Other -->
     <PackageVersion Include="JetBrains.Annotations" Version="2026.2.0" />
   </ItemGroup>

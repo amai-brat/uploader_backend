@@ -2,6 +2,7 @@
   <Folder Name="/solution_items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="init.sql" />
   </Folder>
   <Folder Name="/src/">
     <File Path="src\Directory.Build.props" />
