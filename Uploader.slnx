@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/solution_items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src\Directory.Build.props" />
+    <Project Path="src/Uploader.Core/Uploader.Core.csproj" />
+    <Project Path="src/Uploader.Feature/Uploader.Feature.csproj" />
+    <Project Path="src/Uploader.Infrastructure/Uploader.Infrastructure.csproj" />
+    <Project Path="src/Uploader.Web/Uploader.Web.csproj" />
+    <File Path="src/Directory.Packages.props" />
+  </Folder>
+</Solution>
