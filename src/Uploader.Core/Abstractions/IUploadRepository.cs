@@ -8,5 +8,7 @@ public interface IUploadRepository
     
     Task<Upload?> FindByFileIdAsync(string fileId, CancellationToken ct = default);
     
+    Task<string?> MarkDeletedReturningFileIdAsync(string key, CancellationToken ct = default);
+    
     Task SaveChangesAsync(CancellationToken ct = default);
 }

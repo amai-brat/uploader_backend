@@ -35,6 +35,17 @@ public class UploadRepositoryDapper(DapperContext context) : IUploadRepository
         return upload;
     }
 
+    public async Task<string?> MarkDeletedReturningFileIdAsync(string key, CancellationToken ct = default)
+    {
+        using var connection = context.CreateConnection();
+        var fileId = await connection.ExecuteScalarAsync<string>("""
+           UPDATE Uploads SET IsDeleted = true
+           WHERE "Key" = @key
+           RETURNING concat(FileId, Extension)
+           """, new { key });
+        return fileId;
+    }
+
     public Task SaveChangesAsync(CancellationToken ct = default)
     {
         return  Task.CompletedTask;
