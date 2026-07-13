@@ -78,7 +78,7 @@ public class UploadEndpoint : IEndpoint
             Extension = extension,
             Size = file.Length,
             UserAgent = httpContext.Request.Headers.UserAgent.ToString(),
-            RemoteIpAddress = httpContext.Connection.RemoteIpAddress?.ToString(),
+            RemoteIpAddress = GetRemoteIpAddress(httpContext),
             IsDeleted = false
         };
 
@@ -125,6 +125,12 @@ public class UploadEndpoint : IEndpoint
         var checksumMd5 = Convert.ToHexString(hashBytes).ToLowerInvariant();
         
         return checksumMd5;
+    }
+    
+    private static string? GetRemoteIpAddress(HttpContext httpContext)
+    {
+        return httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault() ?? 
+               httpContext.Connection.RemoteIpAddress?.ToString();
     }
 }
 
