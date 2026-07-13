@@ -6,6 +6,7 @@
     <File Path="compose.yaml" />
     <File Path="Dockerfile" />
     <File Path="init.sql" />
+    <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
     <File Path="src\Directory.Build.props" />
