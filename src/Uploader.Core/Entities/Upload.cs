@@ -61,4 +61,14 @@ public class Upload
     /// Requested to delete
     /// </summary>
     public bool IsDeleted { get; set; }
+
+    /// <summary>
+    /// Uploader user ID
+    /// </summary>
+    public long? UserId { get; set; }
+
+    /// <summary>
+    /// Uploader user
+    /// </summary>
+    public User? User { get; set; }
 }
