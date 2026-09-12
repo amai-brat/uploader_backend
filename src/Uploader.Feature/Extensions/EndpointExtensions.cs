@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Routing;
 using Uploader.Feature.Api.Delete;
+using Uploader.Feature.Api.GetApiKey;
 using Uploader.Feature.Api.GetObject;
 using Uploader.Feature.Api.Upload;
 
@@ -12,6 +13,7 @@ public static class EndpointExtensions
         UploadEndpoint.MapEndpoint(app);
         GetObjectEndpoint.MapEndpoint(app);
         DeleteEndpoint.MapEndpoint(app);
+        GetApiKeyEndpoint.MapEndpoint(app);
         
         return app;
     }

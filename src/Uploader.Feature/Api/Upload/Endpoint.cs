@@ -29,9 +29,11 @@ public class UploadEndpoint : IEndpoint
         BadRequest<UploadErrorResponse>
     >> Handle(
         [FromForm] UploadRequest request,
+        [FromHeader(Name = "X-Api-Key")] string apiKey,
         IFileStorage fileStorage,
         ILogger<UploadEndpoint> logger,
         IUploadRepository uploadRepository,
+        IUserRepository userRepository,
         IOptions<AppSettings> options,
         IThumbnailJobQueue thumbnailQueue,
         HttpContext httpContext,
@@ -50,6 +52,8 @@ public class UploadEndpoint : IEndpoint
             return TypedResults.BadRequest(
                 new UploadErrorResponse($"File size exceeds the {appSettings.MaxFileSize} bytes limit"));
         }
+
+        var user = await userRepository.GetByApiKeyAsync(apiKey, ct);
         
         var fileId = GenerateFileId();
         var key = Guid.NewGuid().ToString("N");
@@ -79,7 +83,8 @@ public class UploadEndpoint : IEndpoint
             Size = file.Length,
             UserAgent = httpContext.Request.Headers.UserAgent.ToString(),
             RemoteIpAddress = GetRemoteIpAddress(httpContext),
-            IsDeleted = false
+            IsDeleted = false,
+            UserId = user?.Id,
         };
 
         await uploadRepository.AddAsync(upload, ct);
