@@ -4,9 +4,10 @@ using System.Text.Json;
 using Uploader.Feature;
 using Uploader.Feature.Extensions;
 using Uploader.Infrastructure;
+using Uploader.Integration;
 using Uploader.Web.Core;
 
-var builder = WebApplication.CreateSlimBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
     .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true, reloadOnChange: false)
@@ -32,12 +33,22 @@ builder.Logging.AddJsonConsole(options =>
     };
 });
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddFeature(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddIntegration(builder.Configuration);
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpLogging();
 app.UseExceptionHandler();
 
