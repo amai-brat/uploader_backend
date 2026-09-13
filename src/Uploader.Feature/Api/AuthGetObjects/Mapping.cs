@@ -5,7 +5,7 @@ public static class Mapping
     public static AuthGetObjectResponse MapToObjectResponse(this Core.Entities.Upload upload)
     {
         var result = new AuthGetObjectResponse(
-            Id: upload.Id.ToString(),
+            Id: upload.FileId,
             ContentType: upload.ContentType,
             UploadDate: new DateTimeOffset(upload.UploadTime).ToUnixTimeMilliseconds(),
             Checksums: new AuthGetObjectChecksums(upload.ChecksumMd5),
