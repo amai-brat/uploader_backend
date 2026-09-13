@@ -8,5 +8,7 @@ public interface IUserRepository
 
     Task<User?> GetByApiKeyAsync(string apiKey, CancellationToken ct = default);
     
+    Task<User?> GetByApiKeyWithUploadsAsync(string apiKey, CancellationToken ct = default);
+    
     Task AddAsync(User user, CancellationToken ct = default);
 }
