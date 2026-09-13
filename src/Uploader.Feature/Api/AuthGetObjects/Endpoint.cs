@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Routing;
 using Uploader.Core.Abstractions;
 using Uploader.Feature.Abstractions;
 
-namespace Uploader.Feature.Api.GetObjects;
+namespace Uploader.Feature.Api.AuthGetObjects;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class GetObjectsEndpoint : IEndpoint
+public class AuthGetObjectsEndpoint : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app)
     {
@@ -19,7 +19,7 @@ public class GetObjectsEndpoint : IEndpoint
     }
 
     internal static async Task<Results<
-        Ok<GetObjectsResponse>,
+        Ok<AuthGetObjectsResponse>,
         UnauthorizedHttpResult
     >> Handle(
         [FromHeader(Name = "X-Api-Key")] string? apiKey,
@@ -33,7 +33,7 @@ public class GetObjectsEndpoint : IEndpoint
         if (user is null)
             return TypedResults.Unauthorized();
 
-        var result = new GetObjectsResponse(user.Uploads
+        var result = new AuthGetObjectsResponse(user.Uploads
             .Select(x => x.MapToObjectResponse())
             .ToList());
         

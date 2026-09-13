@@ -33,7 +33,7 @@ public class UserRepositoryDapper(DapperContext context) : IUserRepository
         using var connection = context.CreateConnection();
         
         User? user = null;
-        await connection.QueryAsync<User, Upload, User>(
+        await connection.QueryAsync<User, Upload?, User>(
             """
             SELECT  u.Id, u.TwitchUserId, u.TwitchUsername, u.ApiKey,
                     up.Id,
@@ -49,7 +49,7 @@ public class UserRepositoryDapper(DapperContext context) : IUserRepository
             {
                 user ??= u;
                 
-                if (up.Id == 0)
+                if (up is null || up.Id == 0)
                     return user;
 
                 up.UserId = user.Id;
