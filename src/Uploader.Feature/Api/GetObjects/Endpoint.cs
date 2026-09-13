@@ -22,15 +22,16 @@ public class GetObjectsEndpoint : IEndpoint
         Ok<GetObjectsResponse>,
         UnauthorizedHttpResult
     >> Handle(
-        [FromHeader(Name = "X-Api-Key")] string apiKey,
+        [FromHeader(Name = "X-Api-Key")] string? apiKey,
         IUserRepository userRepository,
         CancellationToken ct)
     {
+        if (string.IsNullOrWhiteSpace(apiKey))
+            return TypedResults.Unauthorized();
+        
         var user = await userRepository.GetByApiKeyWithUploadsAsync(apiKey, ct);
         if (user is null)
-        {
             return TypedResults.Unauthorized();
-        }
 
         var result = new GetObjectsResponse(user.Uploads
             .Select(x => x.MapToObjectResponse())

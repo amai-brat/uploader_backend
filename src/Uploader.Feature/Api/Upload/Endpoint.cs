@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
 using Uploader.Core.Abstractions;
+using Uploader.Core.Entities;
 using Uploader.Core.Options;
 using Uploader.Feature.Abstractions;
 
@@ -29,7 +30,7 @@ public class UploadEndpoint : IEndpoint
         BadRequest<UploadErrorResponse>
     >> Handle(
         [FromForm] UploadRequest request,
-        [FromHeader(Name = "X-Api-Key")] string apiKey,
+        [FromHeader(Name = "X-Api-Key")] string? apiKey,
         IFileStorage fileStorage,
         ILogger<UploadEndpoint> logger,
         IUploadRepository uploadRepository,
@@ -53,7 +54,11 @@ public class UploadEndpoint : IEndpoint
                 new UploadErrorResponse($"File size exceeds the {appSettings.MaxFileSize} bytes limit"));
         }
 
-        var user = await userRepository.GetByApiKeyAsync(apiKey, ct);
+        User? user = null;
+        if (!string.IsNullOrWhiteSpace(apiKey))
+        {
+            user = await userRepository.GetByApiKeyAsync(apiKey, ct);
+        }
         
         var fileId = GenerateFileId();
         var key = Guid.NewGuid().ToString("N");

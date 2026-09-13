@@ -17,8 +17,7 @@ public class GetApiKeyEndpoint : IEndpoint
     public static void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("key", Handle)
-            .WithName("GetApiKey")
-            .DisableAntiforgery();
+            .WithName("GetApiKey");
     }
     
     internal static async Task<Results<
