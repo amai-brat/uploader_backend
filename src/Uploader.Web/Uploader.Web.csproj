@@ -6,4 +6,7 @@
     <ProjectReference Include="..\Uploader.Feature\Uploader.Feature.csproj" />
     <ProjectReference Include="..\Uploader.Infrastructure\Uploader.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
 </Project>

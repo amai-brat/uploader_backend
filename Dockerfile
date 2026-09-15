@@ -7,6 +7,7 @@ COPY src/Directory.Packages.props src/
 COPY src/Uploader.Core/Uploader.Core.csproj src/Uploader.Core/
 COPY src/Uploader.Feature/Uploader.Feature.csproj src/Uploader.Feature/
 COPY src/Uploader.Infrastructure/Uploader.Infrastructure.csproj src/Uploader.Infrastructure/
+COPY src/Uploader.Integration/Uploader.Integration.csproj src/Uploader.Integration/
 COPY src/Uploader.Web/Uploader.Web.csproj src/Uploader.Web/
 
 RUN dotnet restore src/Uploader.Web/Uploader.Web.csproj -r linux-musl-x64
