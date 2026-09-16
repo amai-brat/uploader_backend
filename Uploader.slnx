@@ -3,16 +3,21 @@
     <File Path=".dockerignore" />
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="changelog.md" />
     <File Path="compose.yaml" />
     <File Path="Dockerfile" />
-    <File Path="init.sql" />
     <File Path="README.md" />
+  </Folder>
+  <Folder Name="/solution_items/migrations/">
+    <File Path="migrations\0_init.sql" />
+    <File Path="migrations\1_add_user.sql" />
   </Folder>
   <Folder Name="/src/">
     <File Path="src\Directory.Build.props" />
     <Project Path="src/Uploader.Core/Uploader.Core.csproj" />
     <Project Path="src/Uploader.Feature/Uploader.Feature.csproj" />
     <Project Path="src/Uploader.Infrastructure/Uploader.Infrastructure.csproj" />
+    <Project Path="src/Uploader.Integration/Uploader.Integration.csproj" />
     <Project Path="src/Uploader.Web/Uploader.Web.csproj" />
     <File Path="src/Directory.Packages.props" />
   </Folder>

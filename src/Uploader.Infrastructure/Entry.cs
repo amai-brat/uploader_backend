@@ -15,6 +15,7 @@ public static class Entry
     {
         services.AddSingleton<DapperContext>();
         services.AddScoped<IUploadRepository, UploadRepositoryDapper>();
+        services.AddScoped<IUserRepository, UserRepositoryDapper>();
         
         services.AddScoped<IFileStorage, LocalFileStorage>();
         

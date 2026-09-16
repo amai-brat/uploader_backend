@@ -12,10 +12,10 @@ public class UploadRepositoryDapper(DapperContext context) : IUploadRepository
         var id = await connection.ExecuteScalarAsync<long>("""
           INSERT INTO Uploads (UploadTime, FileId, OriginalFilename, "Key", 
                                ChecksumMd5, ContentType, Extension, "Size",
-                               UserAgent, RemoteIpAddress, IsDeleted)
+                               UserAgent, RemoteIpAddress, IsDeleted, UserId)
           VALUES (@UploadTime, @FileId, @OriginalFilename, @Key,
                   @ChecksumMd5, @ContentType, @Extension, @Size,
-                  @UserAgent, @RemoteIpAddress, @IsDeleted)
+                  @UserAgent, @RemoteIpAddress, @IsDeleted, @UserId)
           RETURNING Id
           """, upload);
         upload.Id = id;
@@ -27,7 +27,7 @@ public class UploadRepositoryDapper(DapperContext context) : IUploadRepository
         var upload = await connection.QuerySingleAsync<Upload>("""
           SELECT Id, UploadTime, FileId, OriginalFilename, "Key", 
                  ChecksumMd5, ContentType, Extension, "Size",
-                 UserAgent, RemoteIpAddress, IsDeleted
+                 UserAgent, RemoteIpAddress, IsDeleted, UserId
           FROM Uploads
           WHERE FileId = @fileId
           """, new { fileId });
@@ -47,6 +47,6 @@ public class UploadRepositoryDapper(DapperContext context) : IUploadRepository
 
     public Task SaveChangesAsync(CancellationToken ct = default)
     {
-        return  Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }
