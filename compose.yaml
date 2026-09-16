@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    # image: amaicock/uploader-api:latest
     container_name: uploader-api
     ports:
       - "5000:5000"

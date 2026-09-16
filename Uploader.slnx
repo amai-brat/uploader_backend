@@ -3,6 +3,7 @@
     <File Path=".dockerignore" />
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="changelog.md" />
     <File Path="compose.yaml" />
     <File Path="Dockerfile" />
     <File Path="README.md" />
