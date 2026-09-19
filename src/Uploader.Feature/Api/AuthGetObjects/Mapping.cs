@@ -9,7 +9,7 @@ public static class Mapping
             ContentType: upload.ContentType,
             UploadDate: new DateTimeOffset(upload.UploadTime).ToUnixTimeMilliseconds(),
             Checksums: new AuthGetObjectChecksums(upload.ChecksumMd5),
-            Filename: upload.FileId + upload.Extension,
+            Filename: upload.OriginalFilename,
             Extension: upload.Extension,
             Key: upload.Key);
         
