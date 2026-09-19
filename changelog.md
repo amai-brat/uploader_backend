@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2 (19.09.2026)
+#### Changes:
+- Fix sending original filename in `/api/uploads`
+
 ## 0.3.1 (14.09.2026)
 #### Changes:
 - Fix sending uploadId instead of fileId in `/api/uploads`
