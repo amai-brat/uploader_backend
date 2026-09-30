@@ -87,16 +87,12 @@ uploader_backend/
 
 ```
 Uploader.Web
-   │  uses
-   ├──► Uploader.Feature   ─┐
-   │       ─┐              │
-   │       ▼              │ references
-   ├──► Uploader.Infrastructure ─┘
-   │        ▲
-   │        │ references
-   └────────┴──► Uploader.Core
+   ├────► Uploader.Feature
+   │                      ├────► Uploader.Core
+   │                      └────► Uploader.Integration
    │
-   └────────► Uploader.Integration
+   └────► Uploader.Infrastructure
+                          └────► Uploader.Core
 ```
 
 - **Core** has no dependencies on the rest of the solution (framework only).
@@ -240,9 +236,9 @@ Marks the file deleted and removes it from disk (source + thumbnail).
 **Response `200 OK`** — `DeleteResponse { success }`
 `404 Not Found` when no upload matches the key.
 
-### `GET /api/uploads?X-Api-Key=<apiKey>`
+### `GET /api/uploads`
 
-Returns the authenticated user's non-deleted uploads.
+Returns the authenticated user's non-deleted uploads by `X-Api-Key`.
 
 **Response `200 OK`** — `AuthGetObjectsResponse { objects[] }`
 
